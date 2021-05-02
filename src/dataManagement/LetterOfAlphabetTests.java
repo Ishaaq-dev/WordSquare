@@ -7,7 +7,7 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
-class DataManagement {
+class LetterOfAlphabetTests {
 
 	char letter = "a".charAt(0);
 	
@@ -36,6 +36,9 @@ class DataManagement {
 		HashSet<String> set = a.getHashSet(5);
 		assertNotNull(set);
 		assertEquals(set.size(), 1);
+		assertEquals(response, true);
+		assertEquals(response2, true);
+		assertEquals(response3, true);
 	}
 	
 	@Test
