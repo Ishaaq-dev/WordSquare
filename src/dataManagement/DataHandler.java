@@ -13,22 +13,26 @@ public class DataHandler {
 	public DataHandler() {
 		wordFile = new File("data/enable1.txt");
 		wordsMap = new HashMap<Character, LetterOfAlphabet>();
+		wordsMap = readData();
 	}
-	
+
 	public Map<Character, LetterOfAlphabet> readData() {
 		if (wordsMap.isEmpty()) {
 			try {
 				Scanner scanner = new Scanner(wordFile);
 				while (scanner.hasNextLine()) {
 					String word = scanner.nextLine().trim();
-					System.out.println(word.charAt(0));
+					addWordToWordsMap(word);
 				}
 				scanner.close();
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
-			
 		}
+		return wordsMap;
+	}
+	
+	public Map<Character, LetterOfAlphabet> getWordsMap() {
 		return wordsMap;
 	}
 	
@@ -37,5 +41,14 @@ public class DataHandler {
 		if (!wordsMap.containsKey(firstLetter)) {
 			wordsMap.put(firstLetter, new LetterOfAlphabet(firstLetter));
 		}
+		wordsMap.get(firstLetter).addWord(word);
+	}
+	
+	public String toString() {
+		String toString = "";
+		for (Character character : wordsMap.keySet()) {
+			toString += wordsMap.get(character).toString();
+		}
+		return toString;
 	}
 }

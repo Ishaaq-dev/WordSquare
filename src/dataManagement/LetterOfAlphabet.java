@@ -50,7 +50,7 @@ public class LetterOfAlphabet {
 			for (Integer key : wordsMap.keySet()) {
 				toString += "All words with length of characters: " + key + "\n";
 				for(String word : wordsMap.get(key)) {
-					toString += word;
+					toString += word + "\n";
 				}
 				toString += "\n";
 			}
