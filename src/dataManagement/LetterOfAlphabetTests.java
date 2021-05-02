@@ -24,7 +24,7 @@ class LetterOfAlphabetTests {
 		a.addWord("apple");
 		HashSet<String> set = a.getHashSet(5);
 		assertNotNull(set);
-		assertEquals(set.size(), 1);
+		assertEquals(1, set.size());
 	}
 	
 	@Test
@@ -36,9 +36,9 @@ class LetterOfAlphabetTests {
 		HashSet<String> set = a.getHashSet(5);
 		assertNotNull(set);
 		assertEquals(set.size(), 1);
-		assertEquals(response, true);
-		assertEquals(response2, true);
-		assertEquals(response3, true);
+		assertEquals(true, response);
+		assertEquals(true, response2);
+		assertEquals(true, response3);
 	}
 	
 	@Test
@@ -57,11 +57,24 @@ class LetterOfAlphabetTests {
 	}
 	
 	@Test
-	void testGetter() {
+	void testNumberOfWordsGetter() {
+		LetterOfAlphabet a = new LetterOfAlphabet(letter);
+		a.addWord("apple");
+		a.addWord("amazing");
+		a.addWord("Any");
+		a.addWord("aNy");
+		a.addWord("aardvark");
+		a.addWord("aaRDVark");
+		int totalNumberOfWords = a.getNumberOfWords();
+		assertEquals(4, totalNumberOfWords);
+	}
+	
+	@Test
+	void testMapGetter() {
 		LetterOfAlphabet a = new LetterOfAlphabet(letter);
 		Map<Integer, HashSet<String>> wordsMap = a.getWordsMap();
 		assertEquals(wordsMap.getClass().toString(), "class java.util.HashMap");
-		assertEquals(wordsMap.size(), 0);
+		assertEquals(0, wordsMap.size());
 	}
 	
 	@Test
@@ -69,14 +82,14 @@ class LetterOfAlphabetTests {
 		LetterOfAlphabet a = new LetterOfAlphabet(letter);
 		a.addWord("apple");
 		String toString = a.toString();
-		assertEquals(toString, "Letter: A" + "\n" + "All words with length of characters: 5" + "\n" + "apple" + "\n");
+		assertEquals("Letter: A" + "\n" + "All words with length of characters: 5" + "\n" + "apple" + "\n" + "\n", toString);
 	}
 	
 	@Test
 	void emptyToStringTest() {
 		LetterOfAlphabet a = new LetterOfAlphabet(letter);
 		String toString = a.toString();
-		assertEquals(toString, "Letter: A" + "\n" + "No words containing the letter: A\n");
+		assertEquals("Letter: A" + "\n" + "No words containing the letter: A\n", toString);
 	}
 
 }

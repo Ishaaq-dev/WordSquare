@@ -7,14 +7,29 @@ import java.util.Map;
 public class LetterOfAlphabet {
 	private final char letter;
 	private Map<Integer, HashSet<String>> wordsMap;
+	private int numberOfWords;
 	
 	public LetterOfAlphabet(char letter) {
 		this.letter = Character.toUpperCase(letter);
 		wordsMap = new HashMap<Integer, HashSet<String>>();
+		numberOfWords = 0;
 	}
 	
 	public Map<Integer, HashSet<String>> getWordsMap() {
 		return wordsMap;
+	}
+	
+	public int getNumberOfWords() {
+		numberOfWords = calculateNumberOfWords();
+		return numberOfWords;
+	}
+	
+	private int calculateNumberOfWords() {
+		int num = 0;
+		for (Integer key : wordsMap.keySet()) {
+			num += wordsMap.get(key).size();
+		}
+		return num;
 	}
 	
 	public HashSet<String> getHashSet(int lengthOfWord) {
