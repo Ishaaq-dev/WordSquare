@@ -15,7 +15,9 @@ public class Main {
 		DataHandler dh = new DataHandler();
 		Map<Character, HashSet<String>> map = dh.generateWordMapForSquare(4, "eeeeddoonnnsssrv");
 		
-		
+		for (Character characterKey : map.keySet()) {
+			System.out.println(map.get(characterKey));
+		}
 		
 		System.out.println("done");
 	}

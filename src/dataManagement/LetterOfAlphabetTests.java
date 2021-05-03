@@ -25,6 +25,7 @@ class LetterOfAlphabetTests {
 		HashSet<String> set = a.getHashSet(5);
 		assertNotNull(set);
 		assertEquals(1, set.size());
+		assertEquals(set.contains("apple"), true);
 	}
 	
 	@Test

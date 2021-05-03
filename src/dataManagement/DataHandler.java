@@ -2,7 +2,6 @@ package dataManagement;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -71,6 +70,7 @@ public class DataHandler {
 	
 	private HashSet<String> getHashSetOfWordsByLength(Character letter, int lengthOfWord) {
 		HashSet<String> result = null;
+		letter = Character.toUpperCase(letter);
 		if (wordsMap.containsKey(letter)) result = wordsMap.get(letter).getHashSet(lengthOfWord);
 		return result;
 	}
@@ -87,7 +87,7 @@ public class DataHandler {
 		
 		String[] chars = letters.split("");		
 		Stream.of(chars).distinct().forEach(letter -> {
-			HashSet<String> set =
+			letter = letter.toUpperCase();
 			wordMapForSquare.put(letter.charAt(0), getHashSetOfWordsByLength(letter.charAt(0), sizeOfGrid));
 		});
 		
