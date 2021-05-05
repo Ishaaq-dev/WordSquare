@@ -1,6 +1,8 @@
 package trie;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Trie {
 	
@@ -46,9 +48,10 @@ public class Trie {
         pChild.setIsWord(true);
     }
        
-    static void searchWord(TrieNode root, boolean Hash[], String str, ArrayList<String> usuableWords) {
+    static void searchWord(TrieNode root, boolean Hash[], String str, Map<Character, ArrayList<String>> usuableWords) {
         if (root.getIsWord() == true)
-            usuableWords.add(str);
+            if(usuableWords.containsKey(str.charAt(0)))
+            	usuableWords.get(str.charAt(0)).add(str);
        
         for (int K =0; K < SIZE; K++)
         {
@@ -62,7 +65,7 @@ public class Trie {
     }
        
     static void PrintAllWords(char Arr[], TrieNode root, 
-                                              int n, ArrayList<String> usuableWords)
+                                              int n, Map<Character, ArrayList<String>> usuableWords)
     {
         boolean[] Hash = new boolean[SIZE];
        
@@ -84,8 +87,11 @@ public class Trie {
         }
     }
     
-    public ArrayList<String> getUsuableWords(String[] dictionary, char uniqueLetters[]) {
-    	ArrayList<String> usuableWords = new ArrayList<String>();
+    public Map<Character, ArrayList<String>> getUsuableWords(String[] dictionary, char uniqueLetters[]) {
+    	Map<Character, ArrayList<String>> usuableWords = new HashMap<Character, ArrayList<String>>();
+    	for (char uniqueLeter : uniqueLetters) {
+    		usuableWords.put(uniqueLeter, new ArrayList<String>());
+    	}
     	
     	TrieNode node = new TrieNode();
         

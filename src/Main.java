@@ -43,10 +43,12 @@ public class Main {
 		
 		Trie trie = new Trie();
 		
-		ArrayList<String> usuableWords = trie.getUsuableWords(dictionary, letters);
+		Map<Character, ArrayList<String>> usuableWords = trie.getUsuableWords(dictionary, letters);
 		
-		for (String word : usuableWords) {
-			System.out.println(word);
+		for (Character uniqueLetter : usuableWords.keySet()) {
+			for (String word : usuableWords.get(uniqueLetter)) {
+				System.out.println(word);
+			}	
 		}
 		
 		System.out.println("done");
