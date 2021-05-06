@@ -10,7 +10,7 @@ public class LetterOfAlphabet {
 	private int numberOfWords;
 	
 	public LetterOfAlphabet(char letter) {
-		this.letter = Character.toUpperCase(letter);
+		this.letter = Character.toLowerCase(letter);
 		wordsMap = new HashMap<Integer, HashSet<String>>();
 		numberOfWords = 0;
 	}
@@ -43,7 +43,7 @@ public class LetterOfAlphabet {
 	
 	public boolean addWord(String word) {
 		int lengthOfWord = word.length();
-		char firstLetter = word.toUpperCase().charAt(0);
+		char firstLetter = word.toLowerCase().charAt(0);
 		if (firstLetter != letter) {
 			System.out.println("First letter of this object: " + letter + "\n" 
 					+ "First letter of word: " + word + "\n"

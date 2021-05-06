@@ -2,6 +2,7 @@ package trie;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 public class Trie {
@@ -87,7 +88,31 @@ public class Trie {
         }
     }
     
-    public Map<Character, ArrayList<String>> getUsuableWords(String[] dictionary, char uniqueLetters[]) {
+    public static Map<Character, ArrayList<String>> getUsuableWords(Map<Character, HashSet<String>> wordMapForSquare) {
+    	char uniqueLetters[] = new char[wordMapForSquare.keySet().size()];
+    	
+    	int numberOfWords = 0;
+		for (Character uniqueLetter : wordMapForSquare.keySet()) {
+			numberOfWords += wordMapForSquare.get(uniqueLetter).size();
+		}
+		
+		String dictionary[] = new String[numberOfWords];
+    	
+    	int indexForUnqiueLettersArrray = 0;
+    	int indexForDictionaryArray = 0;
+    	for (Character uniqueLetter : wordMapForSquare.keySet()) {
+    		uniqueLetters[indexForUnqiueLettersArrray] = uniqueLetter;
+    		indexForUnqiueLettersArrray++;
+    		for (String word : wordMapForSquare.get(uniqueLetter)) {
+    			dictionary[indexForDictionaryArray] = word;
+    			indexForDictionaryArray++;
+    		}
+    	}
+    	
+    	return getUsuableWords(dictionary, uniqueLetters);
+    }
+    
+    public static Map<Character, ArrayList<String>> getUsuableWords(String[] dictionary, char uniqueLetters[]) {
     	Map<Character, ArrayList<String>> usuableWords = new HashMap<Character, ArrayList<String>>();
     	for (char uniqueLeter : uniqueLetters) {
     		usuableWords.put(uniqueLeter, new ArrayList<String>());
