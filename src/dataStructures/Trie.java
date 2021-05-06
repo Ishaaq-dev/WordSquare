@@ -1,6 +1,9 @@
-package trie;
+package dataStructures;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 
 public class Trie {
 	
@@ -46,9 +49,10 @@ public class Trie {
         pChild.setIsWord(true);
     }
        
-    static void searchWord(TrieNode root, boolean Hash[], String str, ArrayList<String> usuableWords) {
+    static void searchWord(TrieNode root, boolean Hash[], String str, Map<Character, ArrayList<String>> usuableWords) {
         if (root.getIsWord() == true)
-            usuableWords.add(str);
+            if(usuableWords.containsKey(str.charAt(0)))
+            	usuableWords.get(str.charAt(0)).add(str);
        
         for (int K =0; K < SIZE; K++)
         {
@@ -62,7 +66,7 @@ public class Trie {
     }
        
     static void PrintAllWords(char Arr[], TrieNode root, 
-                                              int n, ArrayList<String> usuableWords)
+                                              int n, Map<Character, ArrayList<String>> usuableWords)
     {
         boolean[] Hash = new boolean[SIZE];
        
@@ -84,8 +88,35 @@ public class Trie {
         }
     }
     
-    public ArrayList<String> getUsuableWords(String[] dictionary, char uniqueLetters[]) {
-    	ArrayList<String> usuableWords = new ArrayList<String>();
+    public static Map<Character, ArrayList<String>> getUsuableWords(Map<Character, HashSet<String>> wordMapForSquare) {
+    	char uniqueLetters[] = new char[wordMapForSquare.keySet().size()];
+    	
+    	int numberOfWords = 0;
+		for (Character uniqueLetter : wordMapForSquare.keySet()) {
+			numberOfWords += wordMapForSquare.get(uniqueLetter).size();
+		}
+		
+		String dictionary[] = new String[numberOfWords];
+    	
+    	int indexForUnqiueLettersArrray = 0;
+    	int indexForDictionaryArray = 0;
+    	for (Character uniqueLetter : wordMapForSquare.keySet()) {
+    		uniqueLetters[indexForUnqiueLettersArrray] = uniqueLetter;
+    		indexForUnqiueLettersArrray++;
+    		for (String word : wordMapForSquare.get(uniqueLetter)) {
+    			dictionary[indexForDictionaryArray] = word;
+    			indexForDictionaryArray++;
+    		}
+    	}
+    	
+    	return getUsuableWords(dictionary, uniqueLetters);
+    }
+    
+    public static Map<Character, ArrayList<String>> getUsuableWords(String[] dictionary, char uniqueLetters[]) {
+    	Map<Character, ArrayList<String>> usuableWords = new HashMap<Character, ArrayList<String>>();
+    	for (char uniqueLeter : uniqueLetters) {
+    		usuableWords.put(uniqueLeter, new ArrayList<String>());
+    	}
     	
     	TrieNode node = new TrieNode();
         

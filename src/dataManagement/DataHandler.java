@@ -2,11 +2,14 @@ package dataManagement;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Stream;
+
+import dataStructures.Trie;
 
 public class DataHandler {
 	private File wordFile;
@@ -53,7 +56,7 @@ public class DataHandler {
 	}
 	
 	private void addWordToWordsMap(String word) {
-		char firstLetter = word.toUpperCase().charAt(0);
+		char firstLetter = word.toLowerCase().charAt(0);
 		if (!wordsMap.containsKey(firstLetter)) {
 			wordsMap.put(firstLetter, new LetterOfAlphabet(firstLetter));
 		}
@@ -70,12 +73,11 @@ public class DataHandler {
 	
 	private HashSet<String> getHashSetOfWordsByLength(Character letter, int lengthOfWord) {
 		HashSet<String> result = null;
-		letter = Character.toUpperCase(letter);
 		if (wordsMap.containsKey(letter)) result = wordsMap.get(letter).getHashSet(lengthOfWord);
 		return result;
 	}
 	
-	public Map<Character, HashSet<String>> generateWordMapForSquare(int sizeOfGrid, String letters) {
+	public Map<Character, ArrayList<String>> generateWordMapForSquare(int sizeOfGrid, String letters) {
 		Map<Character, HashSet<String>> wordMapForSquare = new HashMap<Character, HashSet<String>>();
 		double squareRootLengthOfLetters = Math.sqrt(letters.length());
 		if (sizeOfGrid != squareRootLengthOfLetters) {
@@ -87,10 +89,10 @@ public class DataHandler {
 		
 		String[] chars = letters.split("");		
 		Stream.of(chars).distinct().forEach(letter -> {
-			letter = letter.toUpperCase();
+			letter = letter.toLowerCase();
 			wordMapForSquare.put(letter.charAt(0), getHashSetOfWordsByLength(letter.charAt(0), sizeOfGrid));
 		});
 		
-		return wordMapForSquare; 
+		return Trie.getUsuableWords(wordMapForSquare); 
 	}
 }
