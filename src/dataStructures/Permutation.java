@@ -10,10 +10,15 @@ public class Permutation {
 	public Permutation(String letters) {
 		listOfWords = new ArrayList<String>();
 		this.letters = letters;
+		populateListOfWords();
 	}
 	
 	public List<String> getListOfWords() {
 		return listOfWords;
+	}
+	
+	public String getLetters() {
+		return letters;
 	}
 	
 	public void addWord(String word) {

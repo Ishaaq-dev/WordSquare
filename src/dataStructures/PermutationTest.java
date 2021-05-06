@@ -49,13 +49,13 @@ class PermutationTest {
 	
 	@Test 
 	/*
-	 * correctly populates list with large number of words
+	 * correctly populates list with 5 words
 	 */
 	void testFour() {
 		String test = "quickbrowntigerjumpsindex";
 		Permutation p = new Permutation(test);
 		
-		List<String> listOfWords = new ArrayList();
+		List<String> listOfWords = new ArrayList<String>();
 		listOfWords.add("quick");
 		listOfWords.add("brown");
 		listOfWords.add("tiger");
@@ -72,6 +72,22 @@ class PermutationTest {
 		assertEquals(squareRootLength, result);
 		assertEquals(squareRootLength, numberOfWords);
 		assertEquals(listOfWords, resultList);
+	}
+	
+	@Test
+	/*
+	 * correctly populates list with 8 words
+	 */
+	void testFive() {
+		String test = "jdhnbfhtujnkmlkjhdgfthnbchsgdjutikmalkstthepqoeiwhabsndkfheyfjdi";
+		Permutation p = new Permutation(test);
+		boolean resultBoolean = p.populateListOfWords();
+		int squareRootLength = (int) Math.sqrt(test.length());
+		int result = p.getSizeOfWords();
+		int numberOfWords = p.getNumberOfWords();
 		
+		assertEquals(true, resultBoolean);
+		assertEquals(squareRootLength, result);
+		assertEquals(squareRootLength, numberOfWords);
 	}
 }
