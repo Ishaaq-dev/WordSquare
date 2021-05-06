@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
-import trie.Trie;
+import dataStructures.Trie;
 
 public class DataHandler {
 	private File wordFile;

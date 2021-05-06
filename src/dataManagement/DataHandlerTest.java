@@ -10,7 +10,7 @@ class DataHandlerTest {
 	void dataHandlerPopulatesMap() {
 		DataHandler dh = new DataHandler();
 		assertNotNull(dh.getWordsMap());
-		assertEquals(dh.getWordsMap().size(), 26);
+		assertEquals(26, dh.getWordsMap().size());
 	}
 	
 	@Test

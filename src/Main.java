@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 import dataManagement.DataHandler;
-import trie.Trie;
+import dataStructures.Trie;
 
 public class Main {
 
