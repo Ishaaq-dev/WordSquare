@@ -7,20 +7,13 @@ import java.util.Map;
 import java.util.Set;
 
 import dataManagement.DataHandler;
-import dataStructures.Trie;
+import dataStructures.Trie_Shaq;
 
 public class Main {
 
 	public static void main(String[] args) {
 		DataHandler dh = new DataHandler();
-		Map<Character, ArrayList<String>> map = dh.generateWordMapForSquare(4, "eeeeddoonnnsssrv");
-		Set<Character> keys = map.keySet();
-		
-		for (Character uniqueLetter : map.keySet()) {
-			for (String word : map.get(uniqueLetter)) {
-				System.out.println(word);
-			}	
-		}
+		Trie_Shaq trie = dh.generateTrieForSquare(4, "eeeeddoonnnsssrv");
 		
 		System.out.println("done");
 	}

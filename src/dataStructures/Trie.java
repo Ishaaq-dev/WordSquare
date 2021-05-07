@@ -49,10 +49,9 @@ public class Trie {
         pChild.setIsWord(true);
     }
        
-    static void searchWord(TrieNode root, boolean Hash[], String str, Map<Character, ArrayList<String>> usuableWords) {
+    static void searchWord(TrieNode root, boolean Hash[], String str, Trie_Shaq usuableWords) {
         if (root.getIsWord() == true)
-            if(usuableWords.containsKey(str.charAt(0)))
-            	usuableWords.get(str.charAt(0)).add(str);
+            	usuableWords.insertWord(str);
        
         for (int K =0; K < SIZE; K++)
         {
@@ -66,7 +65,7 @@ public class Trie {
     }
        
     static void PrintAllWords(char Arr[], TrieNode root, 
-                                              int n, Map<Character, ArrayList<String>> usuableWords)
+                                              int n, Trie_Shaq usuableWords)
     {
         boolean[] Hash = new boolean[SIZE];
        
@@ -88,7 +87,7 @@ public class Trie {
         }
     }
     
-    public static Map<Character, ArrayList<String>> getUsuableWords(Map<Character, HashSet<String>> wordMapForSquare) {
+    public static Trie_Shaq getUsuableWords(Map<Character, HashSet<String>> wordMapForSquare) {
     	char uniqueLetters[] = new char[wordMapForSquare.keySet().size()];
     	
     	int numberOfWords = 0;
@@ -112,11 +111,8 @@ public class Trie {
     	return getUsuableWords(dictionary, uniqueLetters);
     }
     
-    public static Map<Character, ArrayList<String>> getUsuableWords(String[] dictionary, char uniqueLetters[]) {
-    	Map<Character, ArrayList<String>> usuableWords = new HashMap<Character, ArrayList<String>>();
-    	for (char uniqueLeter : uniqueLetters) {
-    		usuableWords.put(uniqueLeter, new ArrayList<String>());
-    	}
+    public static Trie_Shaq getUsuableWords(String[] dictionary, char uniqueLetters[]) {
+    	Trie_Shaq usuableWords = new Trie_Shaq();
     	
     	TrieNode node = new TrieNode();
         

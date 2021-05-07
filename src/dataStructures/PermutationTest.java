@@ -15,7 +15,7 @@ class PermutationTest {
 	 */
 	void testOne() {
 		Permutation p = new Permutation("abhfjwueir");
-		boolean result = p.populateListOfWords();
+		boolean result = p.isPopulated();
 		assertEquals(false, result);
 	}
 	
@@ -25,7 +25,7 @@ class PermutationTest {
 	 */
 	void testTwo() {
 		Permutation p = new Permutation("abhnjieuthmsjdht");
-		boolean result = p.populateListOfWords();
+		boolean result = p.isPopulated();
 		assertEquals(true, result);
 	}
 	
@@ -36,7 +36,7 @@ class PermutationTest {
 	void testThree() {
 		String test = "abhjutpolkmnjthsgdbnthdgs";
 		Permutation p = new Permutation(test);
-		boolean resultBoolean = p.populateListOfWords();
+		boolean resultBoolean = p.isPopulated();
 		int squareRootLength = (int) Math.sqrt(test.length());
 		int result = p.getSizeOfWords();
 		int numberOfWords = p.getNumberOfWords();
@@ -62,7 +62,7 @@ class PermutationTest {
 		listOfWords.add("jumps");
 		listOfWords.add("index");
 		
-		boolean resultBoolean = p.populateListOfWords();
+		boolean resultBoolean = p.isPopulated();
 		int squareRootLength = (int) Math.sqrt(test.length());
 		int result = p.getSizeOfWords();
 		int numberOfWords = p.getNumberOfWords();
@@ -81,7 +81,7 @@ class PermutationTest {
 	void testFive() {
 		String test = "jdhnbfhtujnkmlkjhdgfthnbchsgdjutikmalkstthepqoeiwhabsndkfheyfjdi";
 		Permutation p = new Permutation(test);
-		boolean resultBoolean = p.populateListOfWords();
+		boolean resultBoolean = p.isPopulated();
 		int squareRootLength = (int) Math.sqrt(test.length());
 		int result = p.getSizeOfWords();
 		int numberOfWords = p.getNumberOfWords();
@@ -89,5 +89,42 @@ class PermutationTest {
 		assertEquals(true, resultBoolean);
 		assertEquals(squareRootLength, result);
 		assertEquals(squareRootLength, numberOfWords);
+	}
+	
+	/*
+	 * method returns true if word exists in list
+	 */
+	@Test
+	void testSix() {
+		String test = "quickbrowntigerjumpsindex";
+		Permutation p = new Permutation(test);
+		
+		boolean result = p.checkWordInList("tiger");
+		assertEquals(true, result);
+	}
+	
+	/*
+	 * method returns false if word does not exist in list
+	 */
+	@Test
+	void testSeven() {
+		String test = "quickbrowntigerjumpsindex";
+		Permutation p = new Permutation(test);
+		
+		boolean result = p.checkWordInList("false");
+		assertEquals(false, result);
+	}
+	
+	/*
+	 * method returns false if word does not exist in list
+	 * harder
+	 */
+	@Test
+	void testEight() {
+		String test = "quickbrowntigerjumpsindex";
+		Permutation p = new Permutation(test);
+		
+		boolean result = p.checkWordInList("ownti");
+		assertEquals(false, result);
 	}
 }

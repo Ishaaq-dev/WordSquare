@@ -5,7 +5,13 @@ import java.util.List;
 
 public class Permutations {
 	
-	public static List<Permutation> getPermutations(String letters) {
+	private Trie_Shaq dictionary;
+	
+	public Permutations(Trie_Shaq dictionary) {
+		this.dictionary = dictionary;
+	}
+	
+	public List<Permutation> getPermutations(String letters, boolean dictionaryCheck) {
 		List<Permutation> permutations = new ArrayList<Permutation>();
 		double squareRoot = Math.sqrt(letters.length());
 		if (squareRoot % 1 != 0) return null; 
@@ -14,16 +20,20 @@ public class Permutations {
 		return permutations;
 	}
 
-	public static void permute(String letters, int startIndex, int endIndex, List<Permutation> permutations) {
+	public void permute(String letters, int startIndex, int endIndex, List<Permutation> permutations) {
 		if (startIndex == endIndex) {
 			Permutation permutation = new Permutation(letters);
-			if (!permutations.contains(permutation)) permutations.add(permutation);
+			if (dictionary != null) {
+				if (checkPermutationContainsWords(permutation) 
+						&& !duplicatePermutationCheck(permutation, permutations)) permutations.add(permutation);
+			} else {
+				permutations.add(permutation);
+			}
 		} else {
 			for (int i=startIndex; i<=endIndex; i++) {
 				letters = swap(letters, startIndex, i);
 				permute(letters, startIndex + 1, endIndex, permutations);
-				letters = swap(letters, startIndex, i);
-				
+				letters = swap(letters, startIndex, i);				
 			}
 		}
 	}
@@ -49,5 +59,30 @@ public class Permutations {
 		String newLetters = new String(lettersArray);
 		
 		return newLetters;
+	}
+	
+	public boolean checkPermutationContainsWords(Permutation permutation) {
+		boolean check = true;
+		
+		for (int i=0; i<permutation.getNumberOfWords(); i++) {
+			if(!dictionary.findWord(permutation.getWord(i))) {
+				check = false;
+				i = permutation.getNumberOfWords();
+			}
+		}
+		
+		return check;
+	}
+	
+	public boolean duplicatePermutationCheck(Permutation permutation, List<Permutation> permutations) {
+		boolean check = false;
+		
+		for (int i=0; i<permutations.size(); i++) {
+			if (permutation.getListOfWords().containsAll(permutations.get(i).getListOfWords())) {
+				check = true;
+				i = permutations.size();
+			}
+		}
+		return check;
 	}
 }
