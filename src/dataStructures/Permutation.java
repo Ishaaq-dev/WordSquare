@@ -83,6 +83,20 @@ public class Permutation {
 		return check;
 	}
 	
+	public List<String> getCheckIndexWords(int index) {
+		List<String> list = null;
+		if(checkIndex(index)) {
+			list = new ArrayList<String>();
+			String word = letters.substring(0, index + 1);
+			for (int i=0; i<word.length(); i+=getSizeOfWords()) {
+				String str = word.substring(i, i + getSizeOfWords());
+				list.add(str);
+			}
+		}
+		
+		return list;
+	}
+	
 	public String toString() {
 		String toString = "";
 		for (String word : listOfWords) {
