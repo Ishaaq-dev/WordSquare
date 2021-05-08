@@ -2,7 +2,6 @@ package dataManagement;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -10,6 +9,7 @@ import java.util.Scanner;
 import java.util.stream.Stream;
 
 import dataStructures.Trie;
+import dataStructures.Trie_Shaq;
 
 public class DataHandler {
 	private File wordFile;
@@ -77,7 +77,7 @@ public class DataHandler {
 		return result;
 	}
 	
-	public Map<Character, ArrayList<String>> generateWordMapForSquare(int sizeOfGrid, String letters) {
+	public Trie_Shaq generateTrieForSquare(int sizeOfGrid, String letters) {
 		Map<Character, HashSet<String>> wordMapForSquare = new HashMap<Character, HashSet<String>>();
 		double squareRootLengthOfLetters = Math.sqrt(letters.length());
 		if (sizeOfGrid != squareRootLengthOfLetters) {

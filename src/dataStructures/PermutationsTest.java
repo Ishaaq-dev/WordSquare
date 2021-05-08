@@ -7,7 +7,11 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import dataManagement.DataHandler;
+
 class PermutationsTest {
+	
+	DataHandler dh = new DataHandler();
 	@Test
 	/*
 	 * Swap method swaps correct indexes with the correct letters
@@ -53,7 +57,8 @@ class PermutationsTest {
 	 * Given a string that can not be square routed to a whole number, returns null
 	 */
 	void testFive() {
-		List<Permutation> permutations = Permutations.getPermutations("abc");
+		Permutations pms = new Permutations(null);
+		List<Permutation> permutations = pms.getPermutations("abc", false);
 		assertEquals(null, permutations);
 	}
 	
@@ -62,7 +67,8 @@ class PermutationsTest {
 	 * given a string, the method returns all possible permutations of string
 	 */
 	void testSix() {
-		List<Permutation> permutations = Permutations.getPermutations("abcd");
+		Permutations pms = new Permutations(null);
+		List<Permutation> permutations = pms.getPermutations("abcd", false);
 		assertEquals(24, permutations.size());
 	}
 	
@@ -72,6 +78,7 @@ class PermutationsTest {
 	 */
 	void testSeven() {
 		String test = "abcd";
+		Permutations pms = new Permutations(null);
 		List<Permutation> expectedPermutations = new ArrayList<Permutation>();
 		expectedPermutations.add(new Permutation("abcd"));
 		expectedPermutations.add(new Permutation("abdc"));
@@ -98,7 +105,7 @@ class PermutationsTest {
 		expectedPermutations.add(new Permutation("dacb"));
 		expectedPermutations.add(new Permutation("dabc"));
 		
-		List<Permutation> resultedPermutations = Permutations.getPermutations(test);
+		List<Permutation> resultedPermutations = pms.getPermutations(test, false);
 		
 		List<Boolean> expectedChecks = new ArrayList<Boolean>();
 		
@@ -114,13 +121,112 @@ class PermutationsTest {
 		assertEquals(24, expectedPermutationString.size());
 	}
 	
-	@Test
+//	@Test
+//	/*
+//	 * given a 10 character string, expect the number of permutations to be 
+//	 */
+//	void testEight() {
+//		String test = "abcdefghi";
+//		List<Permutation> resultedPermutations = Permutations.getPermutations(test);
+//		assertEquals(362880, resultedPermutations.size());
+//	}
+	
+	
+	
 	/*
-	 * given a 10 character string, expect the number of permutations to be 
+	 * an attempt to optimise the permutations alogorithm
+	 * the next suite of tests check to see if the permutation is
+	 * only stored if it contains words
 	 */
-	void testEight() {
-		String test = "abcdefghi";
-		List<Permutation> resultedPermutations = Permutations.getPermutations(test);
-		assertEquals(362880, resultedPermutations.size());
+	
+	/*
+	 * tests checkPermutation returns true if permutation contains words
+	 */
+	@Test
+	void testNine() {
+		String letters = "eeeeddoonnnsssrv";
+		Trie_Shaq dictionary = dh.generateTrieForSquare(4, letters);
+		Permutation permutation = new Permutation("roseovensendends");
+		Permutations pms = new Permutations(dictionary);
+		boolean result = pms.checkPermutationContainsWords(permutation);
+		
+		assertEquals(true, result);
 	}
+	
+	/*
+	 * tests checkPermutation returns false if permutation contains words
+	 */
+	@Test
+	void testTen() {
+		String letters = "eeededoonnnsssrv";
+		Trie_Shaq dictionary = dh.generateTrieForSquare(4, letters);
+		Permutation permutation = new Permutation(letters);
+		Permutations pms = new Permutations(dictionary);
+		boolean result = pms.checkPermutationContainsWords(permutation);
+		
+		assertEquals(false, result);
+	}
+	
+	/*
+	 * check method returns false even if one word exists in perm
+	 * if there are 16 characters
+	 * 4 = real word
+	 * 12 = junk
+	 * The system should not return/store this permutation
+	 */
+	@Test
+	void testEleven() {
+		String letters = "eeeeddoonnnsssrv"; //eddo is the real word
+		Trie_Shaq dictionary = dh.generateTrieForSquare(4, letters);
+		Permutation permutation = new Permutation(letters);
+		Permutations pms = new Permutations(dictionary);
+		boolean result = pms.checkPermutationContainsWords(permutation);
+		
+		assertEquals(false, result);
+	}
+	
+	/*
+	 * same as the above however 
+	 * 12 = real words
+	 * 4 = junk
+	 * test should still return false
+	 */
+	@Test
+	void testTwelve() {
+		String letters = "roseovensendedns"; //edns is junk
+		Trie_Shaq dictionary = dh.generateTrieForSquare(4, letters);
+		Permutation permutation = new Permutation(letters);
+		Permutations pms = new Permutations(dictionary);
+		boolean result = pms.checkPermutationContainsWords(permutation);
+		
+		assertEquals(false, result);
+	}
+	
+	/*
+	 * given a random string of 9 characters
+	 * method should return a list of usuable words to generate word squares
+	 */
+	@Test
+	void testThirteen() {
+		String letters = "nkneeeett";
+		Trie_Shaq dictionary = dh.generateTrieForSquare(3, letters);
+		Permutations pms = new Permutations(dictionary);
+		List<Permutation> result = pms.getPermutations(letters, true);
+		
+		assertEquals(5, result.size());
+	}
+	
+	/*
+	 * Given a random String of 16 characters
+	 * method should return a list of usuable words to generate word squares
+	 */
+//	@Test
+//	void testFourteen() {
+//		String letters = "eeeeddoonnnsssrv";
+//		Trie_Shaq dictionary = dh.generateTrieForSquare(4, letters);
+//		Permutations pms = new Permutations(dictionary);
+//		List<Permutation> result = pms.getPermutations(letters, true);
+//		
+//		assertEquals(5, result.size());
+//	}
 }
