@@ -12,6 +12,7 @@ public class Trie_Shaq{
 
 	public boolean findWord(String word) {
 		TrieNode_Shaq node = rootNode;
+		word = word.toLowerCase();
 
 		for (int i=0; i<word.length();i++) {
 			char currentLetter = word.charAt(i);
@@ -27,6 +28,7 @@ public class Trie_Shaq{
 
 	public void insertWord(String word) {
 		TrieNode_Shaq node = rootNode;
+		word = word.toLowerCase();
 
 		for(int i=0; i<word.length(); i++) {
 			char currentLetter = word.charAt(i);

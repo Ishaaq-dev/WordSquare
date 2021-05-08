@@ -21,8 +21,9 @@ public class Permutations {
 	}
 
 	public void permute(String letters, int startIndex, int endIndex, List<Permutation> permutations) {
+		Permutation permutation = new Permutation(letters);
+		
 		if (startIndex == endIndex) {
-			Permutation permutation = new Permutation(letters);
 			if (dictionary != null) {
 				if (checkPermutationContainsWords(permutation) 
 						&& !duplicatePermutationCheck(permutation, permutations)) permutations.add(permutation);

@@ -127,4 +127,125 @@ class PermutationTest {
 		boolean result = p.checkWordInList("ownti");
 		assertEquals(false, result);
 	}
+	
+	/*
+	 * method return true when index given is at the end of a word 
+	 * in the list
+	 */
+	@Test
+	void testNine() {
+		String test = "quickbrowntigerjumpsindex";
+		Permutation p = new Permutation(test);
+		int index = 4;
+		char character = test.charAt(index);
+		boolean result = p.checkIndex(index);
+		assertEquals(true, result);
+		assertEquals('k', character);
+	}
+	
+	/*
+	 * method return true when index given is at the end of a word 
+	 * in the list
+	 */
+	@Test
+	void testTen() {
+		String test = "quickbrowntigerjumpsindex";
+		Permutation p = new Permutation(test);
+		int index = 9;
+		char character = test.charAt(index);
+		boolean result = p.checkIndex(index);
+		assertEquals(true, result);
+		assertEquals('n', character);
+	}
+	
+	/*
+	 * method return true when index given is at the end of a word 
+	 * in the list
+	 */
+	@Test
+	void testEleven() {
+		String test = "quickbrowntigerjumpsindex";
+		Permutation p = new Permutation(test);
+		int index = 14;
+		char character = test.charAt(index);
+		boolean result = p.checkIndex(index);
+		assertEquals(true, result);
+		assertEquals('r', character);
+	}
+	
+	/*
+	 * method return true when index given is at the end of a word 
+	 * in the list
+	 */
+	@Test
+	void testTwelve() {
+		String test = "quickbrowntigerjumpsindex";
+		Permutation p = new Permutation(test);
+		int index = 19;
+		char character = test.charAt(index);
+		boolean result = p.checkIndex(index);
+		assertEquals(true, result);
+		assertEquals('s', character);
+	}
+	
+	/*
+	 * method return true when index given is at the end of a word 
+	 * in the list
+	 */
+	@Test
+	void testThirteen() {
+		String test = "quickbrowntigerjumpsindex";
+		Permutation p = new Permutation(test);
+		int index = 24;
+		char character = test.charAt(index);
+		boolean result = p.checkIndex(index);
+		assertEquals(true, result);
+		assertEquals('x', character);
+	}
+	
+	/*
+	 * method returns false when index passed is not at the end of a word
+	 * in the list
+	 */
+	@Test
+	void testFourteen() {
+		String test = "quickbrowntigerjumpsindex";
+		Permutation p = new Permutation(test);
+		int index = 2;
+		char character = test.charAt(index);
+		
+		boolean result = p.checkIndex(index);
+		assertEquals(false, result);
+		assertEquals('i', character);
+	}
+	
+	/*
+	 * method returns false when index passed is not at the end of a word
+	 * in the list
+	 */
+	@Test
+	void testFifteen() {
+		String test = "quickbrowntigerjumpsindex";
+		Permutation p = new Permutation(test);
+		int index = 0;
+		char character = test.charAt(index);
+		
+		boolean result = p.checkIndex(index);
+		assertEquals(false, result);
+		assertEquals('q', character);
+	}
+	
+	/*
+	 * method returns false when index passed is not at the end of a word
+	 * in the list
+	 */
+	@Test
+	void testSixteen() {
+		String test = "quickbrowntigerjumpsindex";
+		Permutation p = new Permutation(test);
+		int index = 100;
+		
+		boolean result = p.checkIndex(index);
+		assertEquals(false, result);
+	}
 }
