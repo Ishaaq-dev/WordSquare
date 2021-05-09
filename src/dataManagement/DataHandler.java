@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import dataStructures.Trie;
@@ -78,7 +79,15 @@ public class DataHandler {
 	}
 	
 	public Trie_Shaq generateTrieForSquare(int sizeOfGrid, String letters) {
+		Map<Character, HashSet<String>> wordMapForSquare = getWordMapForSquare(sizeOfGrid, letters);
+		
+		return Trie.getUsuableWords(wordMapForSquare); 
+	}
+	
+	
+	public Map<Character, HashSet<String>> getWordMapForSquare(int sizeOfGrid, String letters) {
 		Map<Character, HashSet<String>> wordMapForSquare = new HashMap<Character, HashSet<String>>();
+	
 		double squareRootLengthOfLetters = Math.sqrt(letters.length());
 		if (sizeOfGrid != squareRootLengthOfLetters) {
 			System.out.println("Size of grid specified: " + sizeOfGrid + "\n"
@@ -93,6 +102,6 @@ public class DataHandler {
 			wordMapForSquare.put(letter.charAt(0), getHashSetOfWordsByLength(letter.charAt(0), sizeOfGrid));
 		});
 		
-		return Trie.getUsuableWords(wordMapForSquare); 
+		return wordMapForSquare;
 	}
 }
