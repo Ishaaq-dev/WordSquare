@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import dataStructures.Permutation;
 
-public class WordSquareTest {
+public class WordSquaresTest {
 
 	String threeLetters = "neteketen";
 	String fourLetters = "ovenroseendssend";
@@ -45,32 +45,32 @@ public class WordSquareTest {
 	
 	@Test
 	void testFive() {
-		WordSquare wordSquare = new WordSquare(new Permutation(threeLetters));
-		List<List<String>> result = wordSquare.makeWordSquare();
+		WordSquares wordSquare = new WordSquares(new Permutation(threeLetters));
+		List<WordSquare> result = wordSquare.makeWordSquare();
 		
 		assertEquals(2, result.size());
 	}
 	
 	@Test
 	void testSix() {
-		WordSquare wordSquare = new WordSquare(new Permutation(fourLetters));
-		List<List<String>> result = wordSquare.makeWordSquare();
+		WordSquares wordSquare = new WordSquares(new Permutation(fourLetters));
+		List<WordSquare> result = wordSquare.makeWordSquare();
 		
 		assertEquals(1, result.size());
 	}
 	
 	@Test
 	void testSeven() {
-		WordSquare wordSquare = new WordSquare(new Permutation(fiveLetters));
-		List<List<String>> result = wordSquare.makeWordSquare();
+		WordSquares wordSquare = new WordSquares(new Permutation(fiveLetters));
+		List<WordSquare> result = wordSquare.makeWordSquare();
 		
 		assertEquals(1, result.size());
 	}
 	
 	@Test
 	void testEight() {
-		WordSquare wordSquare = new WordSquare(new Permutation(sevenLetters));
-		List<List<String>> result = wordSquare.makeWordSquare();
+		WordSquares wordSquare = new WordSquares(new Permutation(sevenLetters));
+		List<WordSquare> result = wordSquare.makeWordSquare();
 		
 		assertEquals(1, result.size());
 	}
@@ -80,7 +80,7 @@ public class WordSquareTest {
 	
 	private List<String> setUpTest(String letters, String prefix) {
 		Permutation permutation = new Permutation(letters);
-		WordSquare wordSquare = new WordSquare(permutation);
+		WordSquares wordSquare = new WordSquares(permutation);
 		
 		List<String> wordsFromPrefix = wordSquare.getWordsFromPrefix(prefix);
 		return wordsFromPrefix;		
