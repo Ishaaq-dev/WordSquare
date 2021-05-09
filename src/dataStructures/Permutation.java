@@ -9,7 +9,7 @@ public class Permutation {
 	private boolean populated;
 	
 	public Permutation(String letters) {
-		listOfWords = populateListOfWords(letters);
+		if (letters != null) listOfWords = populateListOfWords(letters);
 		this.letters = letters;
 		populated = listOfWords == null ? false : true;
 	}
