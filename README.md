@@ -22,7 +22,10 @@ What works?
 --> are the correct length for the square  
   
 ->Given a string that contains words that can be made into a word square in any order:  
--->Example: roseovensendends, endssendroseoven, BravadoRenamedAnalogyValuersAmoebasDegradeOdyssey, OdysseyRenamedBravadoValuersAnalogyAmoebasDegrade  
+-->Example:  
+--->roseovensendends, endssendroseoven  
+--->BravadoRenamedAnalogyValuersAmoebasDegradeOdyssey  
+--->OdysseyRenamedBravadoValuersAnalogyAmoebasDegrade   
 ->the alrogithm will return all the possible word sqaures  
   
 What does not work:  
