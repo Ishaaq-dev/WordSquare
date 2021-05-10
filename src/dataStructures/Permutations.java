@@ -109,10 +109,4 @@ public class Permutations {
 		}
 		return permute;
 	}
-	
-//	private boolean permuteCheckToAddToList(Permutation permutation, List<Permutation> permutations ) {
-//		boolean result = false;
-//		
-//		return result;
-//	}
 }

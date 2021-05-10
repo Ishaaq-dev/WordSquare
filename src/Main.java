@@ -1,8 +1,7 @@
-
-import java.util.List;
 import java.util.Scanner;
 
 import dataManagement.DataHandler;
+import dataStructures.Permutation;
 import dataStructures.Trie_Shaq;
 
 public class Main {
@@ -12,27 +11,38 @@ public class Main {
 		
 		boolean check = false;
 		String letters = "";
+		
+		Scanner scanner = new Scanner(System.in);
 		while (!check) {
-			Scanner scanner = new Scanner(System.in);
-			System.out.println("Enter pool of letters");
+			System.out.println("Enter pool of letters:");
 			letters = scanner.nextLine().toLowerCase();
 			check = validateInput(letters);
 		}
+		scanner.close();
 		
 		int sizeOfGrid = (int) Math.sqrt(letters.length());
 		
 		Trie_Shaq dictionary_trie = dh.generateTrieForSquare(sizeOfGrid, letters);
-		List<String> dictionary = null;
+		System.out.println("Words that can be used to create wordSquare:" + dictionary_trie.dictionaryToString());
+		
+		Permutation permutation = new Permutation(letters);
+		for (int i = 0; i<permutation.getNumberOfWords(); i++) {
+			
+		}
 	}
 	
 	private static boolean validateInput(String input) {
 		boolean check = false;
-		if (Math.sqrt(input.length()) % 1 == 0) {
-			if(!input.matches("^[a-z]")) check = true;
-			else System.out.println("Input must only contain letters");
-		} else System.out.println("Input length can not be square rooted");
+		input = input.toLowerCase();
+		input = input.replaceAll("[^a-z]", "");
+		if (Math.sqrt(input.length()) % 1 == 0 && !input.isBlank()) { check = true;
+		} else System.out.println(errorMessage());
 		
 		return check;
+	}
+	
+	private static String errorMessage() {
+		return "Input is invalid. \nInput has to have a square rootable number of characters";
 	}
 
 }
