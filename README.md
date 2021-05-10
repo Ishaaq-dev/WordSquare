@@ -31,7 +31,7 @@ What works?
 What does not work:  
 I could not get from a string of letters "eeeeddoonnnsssrv" to a string that contained the words "roseovensendends" in any order.  
 I tried running through every permutation of "eeeeddoonnnsssrv" but it was too slow  
-->the number of permutations you can have is factorial of the length of numbers  
+->the number of permutations you can have is factoral of the length of numbers  
 -> 16! = 2.092279e+13  
 -> I tried optimising the algorithm so it didn't find all of the permutations, only the ones it needed, but still didn't work  
--> I am currently trying another method that counts the number of each letter and loops through the dictionary to find words that match, and reduces the number of the conter of each letter as it makes a match.  
+-> I am currently trying another method that counts the number of each letter and loops through the dictionary to find words that match, and reduces the number of the counter of each letter as it makes a match.  
