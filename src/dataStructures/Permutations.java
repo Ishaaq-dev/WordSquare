@@ -11,18 +11,25 @@ public class Permutations {
 		this.dictionary = dictionary;
 	}
 	
-	public List<Permutation> getPermutations(String letters, boolean dictionaryCheck) {
+	public List<Permutation> getPermutations(String letters) {
 		List<Permutation> permutations = new ArrayList<Permutation>();
 		double squareRoot = Math.sqrt(letters.length());
-		if (squareRoot % 1 != 0) return null; 
-		permute(letters, 0, letters.length() - 1, permutations);
+		if (squareRoot % 1 != 0) return null;
+		int counter =0;
+		permute(letters, 0, letters.length() - 1, permutations, counter);
 		
 		return permutations;
 	}
 
-	public void permute(String letters, int startIndex, int endIndex, List<Permutation> permutations) {
+	public void permute(String letters, int startIndex, int endIndex, List<Permutation> permutations, int counter) {
+		System.out.println(counter + ": " + letters);
+		counter++;
+		Permutation permutation = new Permutation(letters);
+		
+		boolean permute = false;
+		
+		
 		if (startIndex == endIndex) {
-			Permutation permutation = new Permutation(letters);
 			if (dictionary != null) {
 				if (checkPermutationContainsWords(permutation) 
 						&& !duplicatePermutationCheck(permutation, permutations)) permutations.add(permutation);
@@ -32,7 +39,8 @@ public class Permutations {
 		} else {
 			for (int i=startIndex; i<=endIndex; i++) {
 				letters = swap(letters, startIndex, i);
-				permute(letters, startIndex + 1, endIndex, permutations);
+				if (dictionary != null) permute = checkPermutationForWords(permutation, startIndex);
+				if (permute) permute(letters, startIndex + 1, endIndex, permutations,counter);
 				letters = swap(letters, startIndex, i);				
 			}
 		}
@@ -85,4 +93,26 @@ public class Permutations {
 		}
 		return check;
 	}
+	
+	public boolean checkPermutationForWords(Permutation permutation, int startIndex) {
+		boolean permute = true;
+		if (dictionary != null) {
+			if (permutation.checkIndex(startIndex) ) {
+				List<String> list = permutation.getCheckIndexWords(startIndex);
+				for (int i=0; i<list.size(); i++) {
+					if(!dictionary.findWord(list.get(i))) {
+						permute = false;
+						i = list.size();
+					}
+				}
+			}
+		}
+		return permute;
+	}
+	
+//	private boolean permuteCheckToAddToList(Permutation permutation, List<Permutation> permutations ) {
+//		boolean result = false;
+//		
+//		return result;
+//	}
 }

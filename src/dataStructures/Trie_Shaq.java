@@ -12,6 +12,7 @@ public class Trie_Shaq{
 
 	public boolean findWord(String word) {
 		TrieNode_Shaq node = rootNode;
+		word = word.toLowerCase();
 
 		for (int i=0; i<word.length();i++) {
 			char currentLetter = word.charAt(i);
@@ -27,6 +28,7 @@ public class Trie_Shaq{
 
 	public void insertWord(String word) {
 		TrieNode_Shaq node = rootNode;
+		word = word.toLowerCase();
 
 		for(int i=0; i<word.length(); i++) {
 			char currentLetter = word.charAt(i);
@@ -40,23 +42,5 @@ public class Trie_Shaq{
 			}
 		}
 		node.setIsWord(true);
-	}
-	
-	public List<Permutation> getPermutations(String letters) {
-		List<Permutation> permutations = new ArrayList<Permutation>();
-		boolean[] availableLettersHash = new boolean[letters.length()];
-		for (int i=0; i<availableLettersHash.length; i++ )
-			availableLettersHash[i] = true;
-		
-		TrieNode_Shaq node = rootNode;
-		char[] lettersArray = letters.toCharArray();
-		
-		for (int i=0; i<lettersArray.length; i++) {
-			if (node.checkChildrenContainLetter(lettersArray[i]) 
-					&& availableLettersHash[i]) {
-			}
-		}
-		
-		return permutations;
 	}
 }
