@@ -1,7 +1,5 @@
 package dataStructures;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
@@ -15,7 +13,6 @@ public class Trie {
 	   
 	    private boolean isWord;
 	      
-	    // Constructor
 	    public TrieNode() {
 	        isWord = false;
 	        for (int i =0 ; i< SIZE ; i++)

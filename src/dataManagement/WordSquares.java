@@ -1,7 +1,6 @@
 package dataManagement;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import dataStructures.Permutation;
@@ -14,14 +13,18 @@ public class WordSquares {
 	public WordSquares(Permutation permutation) {
 		this.permutation = permutation;
 		wordSquares = new ArrayList<WordSquare>();
+		makeWordSquare();
 	}
 	
-	public List<WordSquare> makeWordSquare() {
+	public void makeWordSquare() {
 		for (String word : permutation.getListOfWords()) {
 			WordSquare wordSquare = new WordSquare();
 			wordSquare.addWord(word);
 			wordSquareRecursive(1, wordSquare);
 		}
+	}
+	
+	public List<WordSquare> getWordSqaures() {
 		return wordSquares;
 	}
 	
@@ -29,8 +32,7 @@ public class WordSquares {
 	public boolean wordSquareRecursive(int index, WordSquare wordSquare) {
 		boolean check = false;
 		if (wordSquare.getSizeOfList() == wordSquare.getLengthOfWord()) {
-			System.out.println(wordSquare.toString());
-			wordSquares.add(wordSquare);
+			wordSquares.add(cloneWordSqaure(wordSquare));
 			return true;
 		}
 		String prefix = "";
@@ -54,5 +56,25 @@ public class WordSquares {
 			if (word.startsWith(prefix)) wordsFromPrefix.add(word);
 		}
 		return wordsFromPrefix;
+	}
+	
+	public String toString() {
+		String toString = "";
+		if (wordSquares.isEmpty()) toString += "No word squares can be generated.";
+		else {
+			toString += "WordSqaures:\n";
+			for (WordSquare wordSquare : wordSquares) {
+				toString += wordSquare.toString() + "\n";
+			}
+		}
+		return toString;
+	}
+	
+	private WordSquare cloneWordSqaure(WordSquare wordSquare) {
+		WordSquare clone = new WordSquare();
+		for (String word : wordSquare.getWordSquare()) {
+			clone.addWord(word);
+		}
+		return clone;
 	}
 }
