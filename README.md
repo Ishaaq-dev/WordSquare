@@ -4,10 +4,10 @@ This project produces word squares given a string
 How to run:  
   
 1, cd into cloned WordSqaure Directory  
-2, run the command "java -jar -wordSqaure jar file-"    
+2, run the command "java -jar wordSqaure.jar"    
 3, follow instructions prompted in terminal  
 
-There are two jar file:  
+There are two jar files:  
 -> prints logs  
 -> does not print logs  
   
@@ -26,7 +26,7 @@ What works?
 --->roseovensendends, endssendroseoven  
 --->BravadoRenamedAnalogyValuersAmoebasDegradeOdyssey  
 --->OdysseyRenamedBravadoValuersAnalogyAmoebasDegrade   
-->the alrogithm will return all the possible word sqaures  
+->the alrogithm will return all possible word sqaures  
   
 What does not work:  
 I could not get from a string of letters "eeeeddoonnnsssrv" to a string that contained the words "roseovensendends" in any order.  
