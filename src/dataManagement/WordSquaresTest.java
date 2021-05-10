@@ -46,7 +46,7 @@ public class WordSquaresTest {
 	@Test
 	void testFive() {
 		WordSquares wordSquare = new WordSquares(new Permutation(threeLetters));
-		List<WordSquare> result = wordSquare.makeWordSquare();
+		List<WordSquare> result = wordSquare.getWordSqaures();
 		
 		assertEquals(2, result.size());
 	}
@@ -54,7 +54,7 @@ public class WordSquaresTest {
 	@Test
 	void testSix() {
 		WordSquares wordSquare = new WordSquares(new Permutation(fourLetters));
-		List<WordSquare> result = wordSquare.makeWordSquare();
+		List<WordSquare> result = wordSquare.getWordSqaures();
 		
 		assertEquals(1, result.size());
 	}
@@ -62,7 +62,7 @@ public class WordSquaresTest {
 	@Test
 	void testSeven() {
 		WordSquares wordSquare = new WordSquares(new Permutation(fiveLetters));
-		List<WordSquare> result = wordSquare.makeWordSquare();
+		List<WordSquare> result = wordSquare.getWordSqaures();
 		
 		assertEquals(1, result.size());
 	}
@@ -70,7 +70,7 @@ public class WordSquaresTest {
 	@Test
 	void testEight() {
 		WordSquares wordSquare = new WordSquares(new Permutation(sevenLetters));
-		List<WordSquare> result = wordSquare.makeWordSquare();
+		List<WordSquare> result = wordSquare.getWordSqaures();
 		
 		assertEquals(1, result.size());
 	}
