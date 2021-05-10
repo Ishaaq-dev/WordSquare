@@ -4,7 +4,7 @@ This project produces word squares given a string
 How to run:  
   
 1, cd into cloned WordSqaure Directory  
-2, run the command "java -jar <wordSqaure jar file>  
+2, run the command "java -jar -wordSqaure jar file-"    
 3, follow instructions prompted in terminal  
 
 There are two jar file:  
