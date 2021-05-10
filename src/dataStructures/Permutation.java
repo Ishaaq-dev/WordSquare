@@ -70,6 +70,33 @@ public class Permutation {
 		return check;
 	}
 	
+	public boolean checkIndex(int index) {
+		boolean check = false;
+		if (populated) {
+			try {
+				String word = letters.substring(0, index + 1);
+				if (word.length() % getSizeOfWords() == 0) check = true;
+			} catch (StringIndexOutOfBoundsException e) {
+				System.out.println("check index: index suuplied does not exist in string");
+			}
+		}
+		return check;
+	}
+	
+	public List<String> getCheckIndexWords(int index) {
+		List<String> list = null;
+		if(checkIndex(index)) {
+			list = new ArrayList<String>();
+			String word = letters.substring(0, index + 1);
+			for (int i=0; i<word.length(); i+=getSizeOfWords()) {
+				String str = word.substring(i, i + getSizeOfWords());
+				list.add(str);
+			}
+		}
+		
+		return list;
+	}
+	
 	public String toString() {
 		String toString = "";
 		for (String word : listOfWords) {
