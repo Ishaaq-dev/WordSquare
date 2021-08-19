@@ -11,8 +11,8 @@ There are two jar files:
 -> prints logs  
 -> does not print logs  
   
-The print logs jar prints all the words that can be made with the given string
-The jar that does not print logs only prints the word square
+The print logs jar prints all the words that can be made with the given string.  
+The jar that does not print logs only prints the word square.  
   
 How far I got:  
 Unfortunately I did not get to a working solution however, I feel I am really close.  
